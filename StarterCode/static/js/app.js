@@ -17,25 +17,16 @@ data.forEach((UFOreport) => {
 
 // Filter Functionality
 
-var button = d3.select("#button");
+var button = d3.select("#filter-btn");
 
-function myFunction() {
-    // Declare variables
-    var input, table, tr, td, i, txtValue;
-    input = document.getElementById("date");
-    table = document.getElementById("ufo-table");
-    tr = table.getElementsByTagName("tr");
+button.on("click", function() {
 
-    // Loop through all table rows, and hide those who don't match the search query
-    for (i = 0; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[0];
-        if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(input) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-        }
-    }
-}
+    var inputElement = d3.select("#datetime");
+    var inputValue = inputElement.property("value");
+
+    console.log(inputValue);
+
+    var ufoDate = data.filter(ufo => ufo.datetime === inputValue);
+
+    console.log(ufoDate);
+});
